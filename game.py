@@ -86,10 +86,10 @@ def word_guess():
             print('-',end="")
             for tratt in list_1:
                 if user in list_1:
+                   fuc=list_1.replace('-',user)
+                   print(fuc)
                    new_dict={}
                    new_dict.update({k:user})
-                   for u in new_dict.values():
-                       print(u)
      if user not in secret_word:
         print('The letter is not correct.Try again.')
      if secret==10:
