@@ -17,14 +17,7 @@ def tempt_0():
     user_0=input('Enter action:')
     user_00=input('Enter pass:')
     dictionary_action.update({user_00:user_0})
-    print(dictionary_action)
     
-    
-def tempt_1():
-    user_2=input('Enter action:')
-    user_3=input('Enter pass:')
-    dictionary_action.update({user_3:user_2})
-    print(dictionary_action)
     
 def key_game():
  key='4'
@@ -37,7 +30,7 @@ def key_game():
 key_game()
 
 answ_game_1=input('The are two paths.One to the right and one to the left.Which do you choose?\n')
-print(tempt())
+tempt()
 
 if answ_game_1=='right' or answ_game_1=='left':
    print('Ok you are moving')
@@ -88,8 +81,14 @@ def word_guess():
                 if user in list_1:
                    fuc=list_1.replace('-',user)
                    print(fuc)
-                   new_dict={}
-                   new_dict.update({k:user})
+                   list_2=list(secret_dict.values())
+                   string_1="".join(list_2)
+                   if string_1==secret_word:
+                      print('You guess','The word is',string_1)
+                      dictionary_action.update({'word':'4'})
+                      three_room()
+                      break
+                   
      if user not in secret_word:
         print('The letter is not correct.Try again.')
      if secret==10:
@@ -109,7 +108,7 @@ def math_problem():
         if answer_number==number:
            print('You guessed.You can pass to the next mission')
            print('Good adventurer! You have passed the second mission but the way back home is still long.You are still in the woods but you are thirsty and nee to find a river')
-           print(three_room())
+           three_room()
            break
         else:
            print('Try again',answer_number)
@@ -142,7 +141,8 @@ def letter():
     
 
 #second room
-print(tempt_0())
+tempt_0()
+
 if 'fight' in dictionary_action.values():
     dictionary_action.update({'swamp':'2'})
     print('You are in a swamp and you have other mission.','The swamp is full of sharks.')
@@ -156,7 +156,7 @@ if 'fight' in dictionary_action.values():
         print('Guess the word.It is an animal who lives in puddle')
         word_guess()
     elif direction=='the narrow':
-        print('You can not go by the narrow.The road is blocked',direction)
+        print('You can not go by the narrow.The road is blocked')
     elif direction=='the right':
         dictionary_action.update({'puddle':'5'})
         print('You fell into a puddle and to get out you solve the math problem.')
@@ -211,6 +211,14 @@ elif 'swamp' in dictionary_action:
     exit()
     
 print('Your path is',dictionary_action)
+
+
+
+
+
+
+
+
 
 
 
