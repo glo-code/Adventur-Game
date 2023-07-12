@@ -65,7 +65,7 @@ def three_room():
 #guesstheword
 
 def word_guess():
- secret_word='aligtor'
+ secret_word='delphin'
  secret_dict={}
  for secret in range(10):
      user=input('\n Enter your letter:')
@@ -74,6 +74,8 @@ def word_guess():
         print('The letter is correct.')
         index=secret_word.find(user)
         secret_dict.update({index:user})
+        dict_new=sorted(secret_dict.items())
+        print(dict_new)
         for k in sorted(secret_dict):
             list_1=secret_dict[k]
             print('-',end="")
@@ -81,10 +83,8 @@ def word_guess():
                 if user in list_1:
                    fuc=list_1.replace('-',user)
                    print(fuc)
-                   list_2=list(secret_dict.values())
-                   string_1="".join(list_2)
-                   if string_1==secret_word:
-                      print('You guess','The word is',string_1)
+                   if len(dict_new)==len(secret_word):
+                      print('You guess','The word is',secret_word)
                       dictionary_action.update({'word':'4'})
                       three_room()
                       break
@@ -211,13 +211,6 @@ elif 'swamp' in dictionary_action:
     exit()
     
 print('Your path is',dictionary_action)
-
-
-
-
-
-
-
 
 
 
