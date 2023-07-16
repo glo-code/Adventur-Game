@@ -32,7 +32,7 @@ key_game()
 answ_game_1=input('The are two paths.One to the right and one to the left.Which do you choose?\n')
 tempt()
 
-if answ_game_1=='right' or answ_game_1=='left':
+if answ_game_1=='right'or answ_game_1=='left':
    print('Ok you are moving')
 else:
     print('Invalid input.Try again',answ_game_1)
@@ -42,25 +42,52 @@ if 'right' in dictionary_action.values():
    dictionary_action.update({'woods':'1'})
    print('You meet an animal.','Do you want to escape or fight it?')
 if 'left'  in dictionary_action.values():
-    print('You are lost.Use the compass.Try again.',answ_game_1)
+    print('You are lost.You loose game.')
+    quit()
+    
+
+def fourroom():
+ if 'river' in dictionary_action.keys():
+     print('It is the last room.Game well!')
+     print('You are safe.You are next home.But you have a last mission.You have to guess this question.How many years do you have if you lives in 2070?')
+     question_1=input('In which year you are born:')
+     time=datetime.today().strftime('%Y-%m-%d')
+     time_1="".join(time)
+     time_2=time_1[0:4]
+     age=int(time_2)-int(question_1)
+     question_2=input('Enter your answer:')
+     age_1=2070-int(question_1)
+ if age_1==question_2:
+    print('Oh you guessed.You have to cross the river.')
+    question_3=input('What you use to cross?(raft,tree,swim)')
+    if question_3=='raft':
+       print('You guess the game.You are at home.Goodbye!')
+       dictionary_action.update({'home':'4'})
+    elif question_3=='tree':
+       print('You loose game')
+    elif question_3=='swim':
+       print('You died drowned')
+    else:
+       print('Invalid input',question_3)
+        
 
     
 #threeroom   
 def three_room():
  answer_3=input('Take three steps and write them down(left,right,back,fowards)')
  if answer_3=='left':
-    print('Stop!You are facing a wall',answer_3)
+    print('Stop!You are facing a wall')
     dictionary_action.update({'wall':'3'})
  elif answer_3=='right':
       print('You have found a clue to the rebus that will lead you home.It is a secret formula from an ancient witch who lived in the woods and you have two letters ap.')
       print('Ok you have reached the river.')
       dictionary_action.update({'river':'3'})
+      fourroom()
  elif answer_3=='back':
       print('Stop!You can not go back')
       key_game()
  else:
       print('Keep walking',answer_3)
-
     
 #guesstheword
 
@@ -87,7 +114,8 @@ def word_guess():
                       print('You guess','The word is',secret_word)
                       dictionary_action.update({'word':'4'})
                       three_room()
-                      break
+                      quit()
+                  
                    
      if user not in secret_word:
         print('The letter is not correct.Try again.')
@@ -101,11 +129,11 @@ def math_problem():
     print('Guess the math problem.Find a number between 1 and 10')
     global number 
     number=random.randint(1,10)
-    print(number)
     for i in range(5):
         global answer_number
         answer_number=int(input('Enter number:'))
         if answer_number==number:
+           dictionary_action.update({'number':'4'})
            print('You guessed.You can pass to the next mission')
            print('Good adventurer! You have passed the second mission but the way back home is still long.You are still in the woods but you are thirsty and nee to find a river')
            three_room()
@@ -175,29 +203,7 @@ print('Your path is',dictionary_action)
 #use fuction sopra
 
 
-if 'river' in dictionary_action:
-    print('It is the last room.Game well!')
-    print('You are safe.You are next home.But you have a last mission.You have to guess this question.How many years do you have if you lives in 2070?')
-    question_1=int(input('In which year you are born:'))
-    time=datetime.today().strftime('%Y-%m-%d')
-    time_1="".join(time)
-    time_2=time_1[0:4]
-    age=int(time_2)-question_1
-    question_2=int('Enter your answer:')
-    if question_2==age:
-       print('Oh you guessed.You have to cross the river.')
-       question_3=input('What you use to cross?(raft,tree,swim)')
-       if question_3=='raft':
-          print('You guess the game.You are at home.Goodbye!')
-          dictionary_action.update({'home':'4'})
-       elif question_3=='tree':
-            print('You loose game')
-       elif question_3=='swim':
-            print('You died drowned')
-       else:
-            print('Invalid input',question_3)
-        
-elif 'word' in dictionary_action:
+if 'number' in dictionary_action:
     print('It is the last room.Game well!')
     print('You have to croos the rickety bridge.What year was thr discovery of America?')
     question_4=input('Enter year:')
@@ -211,6 +217,12 @@ elif 'swamp' in dictionary_action:
     exit()
     
 print('Your path is',dictionary_action)
+
+
+
+
+
+
 
 
 
