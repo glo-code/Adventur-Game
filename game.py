@@ -78,3 +78,135 @@ def three_room():
  else:
       print('Keep walking',answer_3)
     
+#guesstheword
+
+def word_guess():
+ secret_word='delphin'
+ secret_dict={}
+ for secret in range(10):
+     user=input('\n Enter your letter:')
+     print('You have 10 attempts.')
+     if user in secret_word:
+        print('The letter is correct.')
+        index=secret_word.find(user)
+        secret_dict.update({index:user})
+        dict_new=sorted(secret_dict.items())
+        print(dict_new)
+        for k in sorted(secret_dict):
+            list_1=secret_dict[k]
+            print('-',end="")
+            for tratt in list_1:
+                if user in list_1:
+                   fuc=list_1.replace('-',user)
+                   print(fuc)
+                   if len(dict_new)==len(secret_word):
+                      print('You guess','The word is',secret_word)
+                      dictionary_action.update({'word':'4'})
+                      three_room()
+                      quit()
+                  
+                   
+     if user not in secret_word:
+        print('The letter is not correct.Try again.')
+     if secret==10:
+        print('You loose game.')
+        break
+
+#guessmathproblem
+
+def math_problem():
+    print('Guess the math problem.Find a number between 1 and 10')
+    global number 
+    number=random.randint(1,10)
+    print(number)
+    for i in range(5):
+        global answer_number
+        answer_number=int(input('Enter number:'))
+        if answer_number==number:
+           dictionary_action.update({'number':'4'})
+           print('You guessed.You can pass to the next mission')
+           print('Good adventurer! You have passed the second mission but the way back home is still long.You are still in the woods but you are thirsty and nee to find a river')
+           three_room()
+           break
+        else:
+           print('Try again',answer_number)
+        if i==5:
+           print('You loose game.')
+           break
+       
+def letter():
+    print('Write a letter which has 7 letters.It has two wovels.')
+    secret_secret='company'
+    for letter_1 in range(7):
+        game=input('Enter letter:')
+        wovel=['a','e','i','o','u']
+        if len(game)==7:
+           print('Ok go on.')
+        for wovel_vowel in wovel:
+            if wovel_vowel in enumerate(game):
+               finder=game.find(wovel_vowel)
+               if finder=='o' or finder=='a':
+                  print('Ok it is correct.Go on.')
+        else:
+            print('Try again')
+        if game==secret_secret:
+           print('You guess')
+           dictionary_action.update({'letter':'2'})
+           three_room()
+           break
+       
+                  
+    
+
+#second room
+tempt_0()
+
+if 'fight' in dictionary_action.values():
+    dictionary_action.update({'swamp':'2'})
+    print('You are in a swamp and you have other mission.','The swamp is full of sharks.')
+    print('Do you want to go back,forward,the narrow or the right?(Please write as the question)')
+    direction=input('Enter answer:')
+    if direction=='back':
+       print('You can not go back')
+       key_game()
+    elif direction=='forward':
+        print('You are trapped in branches and you can only save yourself if you guess the word right')
+        print('Guess the word.It is an animal who lives in puddle')
+        word_guess()
+    elif direction=='the narrow':
+        print('You can not go by the narrow.The road is blocked')
+    elif direction=='the right':
+        dictionary_action.update({'puddle':'5'})
+        print('You fell into a puddle and to get out you solve the math problem.')
+        math_problem()
+    else:
+        print('Invalid input',direction)
+        exit()
+if 'escape' in dictionary_action.values():
+    dictionary_action.update({'escape':'2'})
+    letter()
+
+print('Your path is',dictionary_action)
+
+
+#fourroom
+#use fuction sopra
+
+
+if 'number' in dictionary_action:
+    print('It is the last room.Game well!')
+    print('You have to croos the rickety bridge.What year was thr discovery of America?')
+    question_4=input('Enter year:')
+    dictionary_action.update({'bridge':'6'})
+    if question_4=='1492':
+       print('You guess.You are at home.')
+    else:
+        print('Try again',question_4)
+elif 'swamp' in dictionary_action:
+    print('You loose game.Goodbye.')
+    exit()
+    
+print('Your path is',dictionary_action)
+
+
+
