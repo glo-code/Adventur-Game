@@ -5,7 +5,7 @@ Il gioco è composto da quattro missioni che l'utente deve superare per ritrovar
 
 Struttura:
 
-- Nella prima parte utilizzato alcuni dizionari all'interno di funzioni per tracciare il percorso del giocatore e le stanze attraversate.
+- Nella prima parte ho utilizzato alcuni dizionari all'interno di funzioni per tracciare il percorso del giocatore e le stanze attraversate.
   'def tempt():', def tempt_0():
 
 - "key_game():' è la funzione che fa partire il gioco o meno in base alla risposta del giocatore alla domanda se voglia intraprendere l'avventura o meno.
